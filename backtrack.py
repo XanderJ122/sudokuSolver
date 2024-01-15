@@ -1,13 +1,13 @@
 def print_sudoku(puzzle):
     print("-" * 25)
-    for a, row in enumerate(puzzle):
+    for a in range(len(puzzle)):
         if a % 3 == 0 and a != 0:
             print("-" * 25)
         print("|", end=" ")
-        for b, num in enumerate(row):
+        for b in range(len(puzzle[a])):
             if b % 3 == 0 and b != 0:
                 print("|", end=" ")
-            print(num, end=" ")
+            print(puzzle[a][b], end=" ")
         print("|")
     print("-" * 25)
 
@@ -40,12 +40,12 @@ def look_for_blanks(puzzle):
 
 
 def solve_sudoku(puzzle):
-    gap = look_for_blanks(puzzle)
+    blank = look_for_blanks(puzzle)
 
-    if not gap:
+    if not blank:
         return True
 
-    row, column = gap
+    row, column = blank
 
     for number in range(1, 10):
         if is_correct(puzzle, row, column, number):
